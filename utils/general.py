@@ -1,4 +1,5 @@
 import cv2
+import os
 
 class ImageReader(object):
     def __init__(self, file_names):
@@ -37,3 +38,18 @@ class VideoReader(object):
         if not was_read:
             raise StopIteration
         return self.file_name, img
+
+def get_file_list(file_dir):
+    """Get the files in the directory and sort them in ascending order of file modification time.
+
+    Args:
+        file_dir (str): The directory of files.
+
+    Returns:
+        list: The sorted list of files in the directory.
+    """    
+
+    file_list = os.listdir(file_dir)
+
+    return sorted(file_list, 
+                  key=lambda x: os.path.getmtime(os.path.join(file_dir, x))) if file_list else []
