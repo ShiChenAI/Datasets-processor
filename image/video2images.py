@@ -1,4 +1,3 @@
-from genericpath import isfile
 import os
 import sys
 parent_path = os.path.dirname(sys.path[0])
@@ -12,7 +11,7 @@ from utils.general import VideoReader
 def get_args():
     parser = argparse.ArgumentParser(description='Video to images.')
     parser.add_argument('--video-source', type=str, help='Directory of videos/name of a video.')
-    parser.add_argument('--save-path', type=str, help='Save path of output images.')
+    parser.add_argument('--save-dir', type=str, help='Save directory of output images.')
     parser.add_argument('--interval', type=int, default=1, help='Extracts images at the specified interval')
 
     return parser.parse_args()
@@ -44,6 +43,9 @@ if __name__ == '__main__':
     if os.path.isdir(args.video_source):
         for video_name in os.listdir(args.video_source):
             video_path = os.path.join(args.video_source, video_name)
-            process_video(video_path, os.path.join(args.save_path, os.path.splitext(video_name)[0]), args.interval)
+            process_video(video_path, 
+                          os.path.join(args.save_dir, 
+                                       os.path.splitext(video_name)[0]), 
+                                       args.interval)
     elif os.path.isfile(args.video_source):
-        process_video(args.video_source, args.save_path, args.interval)
+        process_video(args.video_source, args.save_dir, args.interval)
