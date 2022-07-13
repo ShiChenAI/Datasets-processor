@@ -1,6 +1,4 @@
-from lib2to3.pytree import convert
 import os
-from webbrowser import get
 import imageio
 from PIL import Image
 from tqdm import tqdm

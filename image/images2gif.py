@@ -1,4 +1,3 @@
-
 import os
 import sys
 parent_path = os.path.dirname(sys.path[0])
@@ -7,7 +6,6 @@ if parent_path not in sys.path:
 import shutil
 import argparse
 
-from utils.general import VideoReader
 from utils.image import create_gif, convert_img
 
 def get_args():
