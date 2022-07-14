@@ -4,6 +4,22 @@ from PIL import Image
 from tqdm import tqdm
 from utils.general import get_file_list
 
+def is_jpg(filename):
+    """Check if the image format is jpg.
+
+    Args:
+        filename (str): The filename to check.
+
+    Returns:
+        bool: if the image format is jpg.
+    """
+
+    try:
+        img = Image.open(filename)
+        return img.format =='JPEG'
+    except IOError:
+        return False
+
 def create_gif(save_path, img_dir, duration=0.1):
     """Create a gif file from images.
 
@@ -17,7 +33,7 @@ def create_gif(save_path, img_dir, duration=0.1):
     imageio.mimsave(save_path, frames, 'GIF', duration=duration)
 
 def convert_img(img_source, save_dir, img_size, target_type='png'):
-    """COnvert image(s) to specified type.
+    """Convert image(s) to specified type.
 
     Args:
         img_source (str): Directory of images/name of an image.
