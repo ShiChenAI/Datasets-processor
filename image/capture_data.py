@@ -4,13 +4,16 @@ import cv2
 
 def get_args():
     parser = argparse.ArgumentParser(description='Capture data (images/video) via camera.')
-    parser.add_argument('--cam-id', type=int, default=0, help='Camera index.')
+    parser.add_argument('--cam-id', type=int, default=0, 
+                        help='Camera index.')
     parser.add_argument('--mode', type=int, default=0, 
                         help='0-visualization, 1-capturing images, 2-capturing video')
     parser.add_argument('--save-path', type=str, 
                         help='Save path to captured data.')
-    parser.add_argument('--width', type=int, help='Image/video width.')
-    parser.add_argument('--height', type=int, help='Image/video height.')
+    parser.add_argument('--width', type=int, 
+                        help='Image/video width.')
+    parser.add_argument('--height', type=int, 
+                        help='Image/video height.')
     
     return parser.parse_args()
 

@@ -10,11 +10,16 @@ from utils.image import create_gif, convert_img
 
 def get_args():
     parser = argparse.ArgumentParser(description='Images to gif.')
-    parser.add_argument('--img-dir', type=str, help='Directory of images.')
-    parser.add_argument('--save-path', type=str, help='Save path of output gif file.')
-    parser.add_argument('--width', type=int, default=480, help='Images width.')
-    parser.add_argument('--height', type=int, default=360, help='Images height.')
-    parser.add_argument('--duration', type=float, default=0.1, help='Frame duration.')
+    parser.add_argument('--img-dir', type=str, 
+                        help='Directory of images.')
+    parser.add_argument('--save-path', type=str, 
+                        help='Save path of output gif file.')
+    parser.add_argument('--width', type=int, default=480, 
+                        help='Images width.')
+    parser.add_argument('--height', type=int, default=360, 
+                        help='Images height.')
+    parser.add_argument('--duration', type=float, default=0.1, 
+                        help='Frame duration.')
 
     return parser.parse_args()
 

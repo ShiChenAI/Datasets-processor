@@ -10,9 +10,12 @@ from utils.general import VideoReader
 
 def get_args():
     parser = argparse.ArgumentParser(description='Video to images.')
-    parser.add_argument('--video-source', type=str, help='Directory of videos/name of a video.')
-    parser.add_argument('--save-dir', type=str, help='Save directory of output images.')
-    parser.add_argument('--interval', type=int, default=1, help='Extracts images at the specified interval')
+    parser.add_argument('--video-source', type=str, 
+                        help='Directory of videos/name of a video.')
+    parser.add_argument('--save-dir', type=str, 
+                        help='Save directory of output images.')
+    parser.add_argument('--interval', type=int, default=1, 
+                        help='Extracts images at the specified interval')
 
     return parser.parse_args()
 
