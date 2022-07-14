@@ -9,7 +9,8 @@ import argparse
 
 def get_args():
     parser = argparse.ArgumentParser(description='Batch rename files.')
-    parser.add_argument('--file-dir', type=str, help='Directory of files.')
+    parser.add_argument('--file-dir', type=str, 
+                        help='Directory of files.')
     parser.add_argument('--save-dir', type=str, 
                         help='Save directory of output files (saves in the current directory if null).')
     parser.add_argument('--prefix', type=str, 
@@ -31,7 +32,7 @@ def rename_files(file_dir, save_dir, prefix, start_idx, target_type):
         start_idx (int):The start index of renamed files. 
         target_type (str): Only rename files that have the target type.
     """    
-    
+
     if save_dir is not None and not os.path.exists(save_dir):
         os.makedirs(save_dir)
 
