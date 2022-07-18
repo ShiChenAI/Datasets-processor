@@ -1,0 +1,7 @@
+# pip install -r requirements.txt
+opencv-python
+Pillow
+scikit-image
+matplotlib
+tqdm
+pycocotools
