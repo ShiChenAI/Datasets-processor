@@ -2,6 +2,7 @@ import os
 import imageio
 from PIL import Image
 from tqdm import tqdm
+import cv2
 from utils.general import get_file_list
 
 def is_jpg(filename):
@@ -60,3 +61,24 @@ def convert_img(img_source, save_dir, img_size, target_type='png'):
         img.save(os.path.join(save_dir, 
                               '{0}.{1}'.format(os.path.splitext(os.path.split(img_source)[1])[0], 
                                                                 target_type)))
+
+def create_video(save_path, img_dir, fps, img_size):
+    """Create a video file from images.
+
+    Args:
+        file_name (str): The name of the video file to create.
+        img_dir (str): The directory of the source images.
+        fps (float): The frame rate of the video file.
+        img_size (tuple): The size of converted images.
+    """    
+
+    fourcc = cv2.VideoWriter_fourcc('m','p','4', 'v')
+    video  = cv2.VideoWriter(save_path, fourcc, fps, img_size)
+    pbar = tqdm(get_file_list(img_dir))
+    for img_name in pbar:
+        img_path = os.path.join(img_dir, img_name)
+        pbar.set_description('Processing: {}'.format(img_path))
+        frame = cv2.imread(img_path)
+        video.write(frame)
+
+    video.release()
