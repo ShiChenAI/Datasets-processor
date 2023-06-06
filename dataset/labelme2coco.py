@@ -12,6 +12,7 @@ import uuid
 import imgviz
 import numpy as np
 import labelme
+from PIL import Image
 
 try:
     import pycocotools.mask
@@ -94,6 +95,11 @@ def convert_annotations(input_dir, output_dir, dataset_type, cat_file, noviz=Fal
         out_img_file = os.path.join(output_dir, dataset_type, base + '.jpg')
 
         img = labelme.utils.img_data_to_arr(label_file.imageData)
+        if img.shape[2] == 4: 
+            #img = img[:, :, :3]
+            img = Image.fromarray(img)
+            img = img.convert('RGB')
+            img = np.array(img)
         imgviz.io.imsave(out_img_file, img)
         data['images'].append(dict(license=0,
                                    url=None,
@@ -148,7 +154,7 @@ def convert_annotations(input_dir, output_dir, dataset_type, cat_file, noviz=Fal
             data['annotations'].append(dict(id=len(data['annotations']),
                                             image_id=img_id,
                                             category_id=cat_id,
-                                            segmentation=segmentations[instance],
+                                            segmentation=[] if shape_type == 'rectangle' else segmentations[instance],
                                             area=area,
                                             bbox=bbox,
                                             iscrowd=0,))
